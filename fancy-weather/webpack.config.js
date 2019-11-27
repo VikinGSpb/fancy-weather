@@ -4,10 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-      app: './src/main.js'
+      app: './src/index.js'
     },
     output: {
-      filename: 'main.js',
+      filename: 'index.js',
       path: path.resolve(__dirname, './dist')
     },
 
@@ -41,10 +41,6 @@ module.exports = {
                 use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             },
 
-            {
-                test: /\.css$/,
-                use: [ 'style-loader', MiniCssExtractPlugin.loader, 'css-loader' ]
-            },
 
             {
                 test: /\.(png|jpe?g|gif|svg)$/,

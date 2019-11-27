@@ -2,7 +2,7 @@
   "name": "fancy-weather",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/main.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development",
@@ -18,7 +18,6 @@
   "devDependencies": {
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
-    "autoprefixer-loader": "^3.2.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
     "eslint": "^6.1.0",
