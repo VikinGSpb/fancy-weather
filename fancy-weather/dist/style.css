@@ -15,7 +15,6 @@ html, body {
 .wrapper {
   font-family: 'Montserrat', sans-serif;
   margin: 0 auto;
-  background: gray;
   width: 1440px;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -25,14 +24,9 @@ html, body {
       width: 100%; } }
   @media screen and (max-width: 1079px) {
     .wrapper {
-      background: red;
       grid-template-areas: "control control" "today ." "forecast forecast" "location location"; } }
-  @media screen and (max-width: 724px) {
-    .wrapper {
-      background: green; } }
   @media screen and (max-width: 555px) {
     .wrapper {
-      background: blue;
       width: 320px;
       margin: 0 auto; } }
 

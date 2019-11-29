@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800&display=swap" rel="stylesheet"> 
     <link href="./style.css" rel="stylesheet">
     <script src="./index.js" defer></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
   </head>
   <body>
     <div class="wrapper">
@@ -65,13 +67,12 @@
       </section>
 
       <section class="location">
-        <div class="location__map"></div>
+        <div class="location__map" id="map"></div>
         <div class="location__coord">
-          Latitude: 53&#176;54'<br>
-          Longitude: 27&#176;34'
+          Latitude: <span>53&#176;54'</span><br>
+          Longitude: <span>27&#176;34'</span>
         </div>
       </section>
-
     </div>
   </body>
 </html>

@@ -109,6 +109,30 @@ eval("\n\nvar stylesInDom = {};\n\nvar isOldIE = function isOldIE() {\n  var mem
 
 /***/ }),
 
+/***/ "./src/components/functions/getLinkToImage.js":
+/*!****************************************************!*\
+  !*** ./src/components/functions/getLinkToImage.js ***!
+  \****************************************************/
+/*! exports provided: getLinkToImage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getLinkToImage\", function() { return getLinkToImage; });\nconst width = screen.width.toString();\nconst height = screen.height.toString();\nconst body = document.querySelector('body');\nasync function getLinkToImage() {\n  const url = 'https://api.unsplash.com/photos/random?orientation=landscape&per_page=1&query=nature+night+snow+winter' + '&client_id=a2840b831d7df553cc4c7c1492e8602cbd21b24a89cb2050aaf67407e892be30';\n\n  try {\n    const response = await fetch(url);\n    const data = await response.json();\n    const image = document.createElement('img');\n    image.crossOrigin = 'Anonymous';\n    const link = `${data.urls.raw}&w=${width}&h=${height}`;\n    image.setAttribute('src', link);\n\n    image.onload = () => {\n      body.style.background = `url(${link}) no-repeat`;\n      body.style.backgroundSize = 'cover';\n    };\n\n    image.onerror = () => {\n      throw new Error('Data Error');\n    };\n  } catch (e) {\n    console.error(e);\n  }\n}\n\n//# sourceURL=webpack:///./src/components/functions/getLinkToImage.js?");
+
+/***/ }),
+
+/***/ "./src/components/functions/getLocation.js":
+/*!*************************************************!*\
+  !*** ./src/components/functions/getLocation.js ***!
+  \*************************************************/
+/*! exports provided: getLocation */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getLocation\", function() { return getLocation; });\nconst locationCoord1 = document.querySelector('.location__coord>span:first-child');\nconst locationCoord2 = document.querySelector('.location__coord>span:last-child');\n\nfunction degToDegMin(deg) {\n  return `${Math.floor(Number(deg))}&#176;${Math.floor(Math.round((Number(deg) - Math.floor(Number(deg))) * 3600) / 60)}'`;\n}\n\nfunction createMap(center1, center2) {\n  mapboxgl.accessToken = 'pk.eyJ1IjoidmlraW5nc3BiIiwiYSI6ImNrM2tqNGQ3dTAzaTMzbXBoc3M2b2F1M24ifQ.Bp3PDP-MfQIRDxkvbivaIA';\n  const map = new mapboxgl.Map({\n    container: 'map',\n    style: 'mapbox://styles/mapbox/streets-v11',\n    center: [center1, center2],\n    zoom: 9\n  });\n}\n\nasync function getLocation() {\n  const url = 'https://ipinfo.io/geo?token=a4c83857cf016c';\n  const response = await fetch(url);\n  const location = await response.json();\n  const loc = await location.loc.split(',');\n  locationCoord1.innerHTML = degToDegMin(loc[0]);\n  locationCoord2.innerHTML = degToDegMin(loc[1]);\n  createMap(Number(loc[1]), Number(loc[0]));\n}\n\n//# sourceURL=webpack:///./src/components/functions/getLocation.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -117,7 +141,7 @@ eval("\n\nvar stylesInDom = {};\n\nvar isOldIE = function isOldIE() {\n  var mem
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ \"./src/style.scss\");\n/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_0__);\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ \"./src/style.scss\");\n/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _components_functions_getLinkToImage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/functions/getLinkToImage */ \"./src/components/functions/getLinkToImage.js\");\n/* harmony import */ var _components_functions_getLocation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/functions/getLocation */ \"./src/components/functions/getLocation.js\");\n\n\n\nconst refresh = document.querySelector('.control__panel_refresh');\nObject(_components_functions_getLinkToImage__WEBPACK_IMPORTED_MODULE_1__[\"getLinkToImage\"])();\nrefresh.addEventListener('click', _components_functions_getLinkToImage__WEBPACK_IMPORTED_MODULE_1__[\"getLinkToImage\"]);\nObject(_components_functions_getLocation__WEBPACK_IMPORTED_MODULE_2__[\"getLocation\"])();\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
