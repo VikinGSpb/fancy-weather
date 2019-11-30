@@ -168,7 +168,7 @@ html, body {
     line-height: 1.688rem; }
   .weather-forecast__day div {
     display: flex; }
-  .weather-forecast__day span {
+  .weather-forecast__day div span {
     font-weight: 600;
     font-size: 5rem;
     line-height: 6.125rem; }
