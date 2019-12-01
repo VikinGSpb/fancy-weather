@@ -9,6 +9,7 @@ function degToDegMin(deg) {
 /* f1 parameters - long, lat; other functions - lat, long */
 export async function getLocation(f1, ...args) {
   const url = 'https://ipinfo.io/geo?token=a4c83857cf016c';
+  try {
   const response = await fetch(url);
   const location = await response.json();
   const loc = await location.loc.split(',');
@@ -20,4 +21,7 @@ export async function getLocation(f1, ...args) {
   args.forEach((func) => {
     func(Number(loc[0]), Number(loc[1]));
   });
+  } catch(e) {
+    console.error(e);
+  }
 }

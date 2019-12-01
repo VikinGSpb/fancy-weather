@@ -10,6 +10,10 @@ const nextDay3Span = document.querySelector('#nextDay3>span');
 const nextDay1TempSpan = document.querySelector('#nextDay1>div>span');
 const nextDay2TempSpan = document.querySelector('#nextDay2>div>span');
 const nextDay3TempSpan = document.querySelector('#nextDay3>div>span');
+const todayWeatherIconElement = document.querySelector('.today-weather__icon');
+const nextDay1WeatherIconElement = document.querySelector('#nextDay1>div>div');
+const nextDay2WeatherIconElement = document.querySelector('#nextDay2>div>div');
+const nextDay3WeatherIconElement = document.querySelector('#nextDay3>div>div');
 
 function cToF(temp) {
   return Math.round(5 / 9 * (temp - 32));
@@ -19,6 +23,7 @@ function cToF(temp) {
 export async function getWeather(lat, long) {
   const url = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/a8aa053288d0f79e11f6a65e33c19366/'
     + `${lat},${long}`;
+  try {
   const response = await fetch(url);
   const data = await response.json();
 
@@ -27,7 +32,20 @@ export async function getWeather(lat, long) {
   const appTempF = Math.round(data.currently.apparentTemperature);
   const appTempC = cToF(appTempF);
   const windSpeed = data.currently.windSpeed.toFixed(1);
-  const humidity = data.currently.humidity * 100;
+  const humidity = Math.round(data.currently.humidity * 100);
+  const todayWeatherIcon = data.currently.icon;
+  const nextDay1WeatherIcon = data.daily.data[0].icon;
+  const nextDay2WeatherIcon = data.daily.data[1].icon;
+  const nextDay3WeatherIcon = data.daily.data[2].icon;
+
+  todayWeatherIconElement.style.background = `url(./assets/img/${todayWeatherIcon}.svg) no-repeat rgba(255, 255, 0, 0.1) 50% 50%`;
+  todayWeatherIconElement.style.backgroundSize = '100%';
+  nextDay1WeatherIconElement.style.background = `url(./assets/img/${nextDay1WeatherIcon}.svg) no-repeat rgba(255, 255, 0, 0.1) 50% 50%`;
+  nextDay1WeatherIconElement.style.backgroundSize = '100%';
+  nextDay2WeatherIconElement.style.background = `url(./assets/img/${nextDay2WeatherIcon}.svg) no-repeat rgba(255, 255, 0, 0.1) 50% 50%`;
+  nextDay2WeatherIconElement.style.backgroundSize = '100%';
+  nextDay3WeatherIconElement.style.background = `url(./assets/img/${nextDay3WeatherIcon}.svg) no-repeat rgba(255, 255, 0, 0.1) 50% 50%`;
+  nextDay3WeatherIconElement.style.backgroundSize = '100%';
 
   const nextDay1Temp = cToF((data.daily.data[0].temperatureHigh + data.daily.data[0].temperatureLow) / 2);
   const nextDay2Temp = cToF((data.daily.data[1].temperatureHigh + data.daily.data[1].temperatureLow) / 2);
@@ -57,5 +75,8 @@ export async function getWeather(lat, long) {
   nextDay2TempSpan.innerHTML = nextDay2Temp + '&#176;';
   nextDay3TempSpan.innerHTML = nextDay3Temp + '&#176;';
 
-  console.log(data, tempF, tempC, appTempF, appTempC, windSpeed, humidity, currTimeStr, currTime, nextWeekDay1, nextWeekDay2, nextWeekDay3);
+  console.log(todayWeatherIcon, nextDay1WeatherIcon, nextDay2WeatherIcon, nextDay3WeatherIcon);
+  } catch(e) {
+    console.error(e);
+  }
 }
