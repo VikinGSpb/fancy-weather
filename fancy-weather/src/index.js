@@ -4,6 +4,7 @@ import { getLocation } from './components/functions/getLocation';
 import { createMap } from './components/functions/createMap';
 import { getWeather } from './components/functions/getWeather';
 import { getCoordinatesFromSearch } from './components/functions/search';
+import { voiceSearch } from './components/functions/voiceSearch';
 
 const refresh = document.querySelector('#refresh');
 const searchButton = document.querySelector('#searchButton');
@@ -17,3 +18,5 @@ getLinkToImage();
 refresh.addEventListener('click', getLinkToImage);
 
 getLocation(createMap, getWeather);
+
+voiceSearch();
