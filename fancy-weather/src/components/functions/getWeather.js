@@ -15,7 +15,7 @@ const nextDay1WeatherIconElement = document.querySelector('#nextDay1>div>div');
 const nextDay2WeatherIconElement = document.querySelector('#nextDay2>div>div');
 const nextDay3WeatherIconElement = document.querySelector('#nextDay3>div>div');
 
-function cToF(temp) {
+function fToC(temp) {
   return Math.round(5 / 9 * (temp - 32));
 }
 
@@ -28,9 +28,9 @@ export async function getWeather(lat, long) {
   const data = await response.json();
 
   const tempF = Math.round(data.currently.temperature);
-  const tempC = cToF(tempF);
+  const tempC = fToC(tempF);
   const appTempF = Math.round(data.currently.apparentTemperature);
-  const appTempC = cToF(appTempF);
+  const appTempC = fToC(appTempF);
   const windSpeed = data.currently.windSpeed.toFixed(1);
   const humidity = Math.round(data.currently.humidity * 100);
   const todayWeatherIcon = data.currently.icon;
@@ -47,9 +47,9 @@ export async function getWeather(lat, long) {
   nextDay3WeatherIconElement.style.background = `url(./assets/img/${nextDay3WeatherIcon}.svg) no-repeat rgba(255, 255, 0, 0.1) 50% 50%`;
   nextDay3WeatherIconElement.style.backgroundSize = '100%';
 
-  const nextDay1Temp = cToF((data.daily.data[0].temperatureHigh + data.daily.data[0].temperatureLow) / 2);
-  const nextDay2Temp = cToF((data.daily.data[1].temperatureHigh + data.daily.data[1].temperatureLow) / 2);
-  const nextDay3Temp = cToF((data.daily.data[2].temperatureHigh + data.daily.data[2].temperatureLow) / 2);
+  const nextDay1Temp = fToC((data.daily.data[0].temperatureHigh + data.daily.data[0].temperatureLow) / 2);
+  const nextDay2Temp = fToC((data.daily.data[1].temperatureHigh + data.daily.data[1].temperatureLow) / 2);
+  const nextDay3Temp = fToC((data.daily.data[2].temperatureHigh + data.daily.data[2].temperatureLow) / 2);
 
   const today = new Date(data.currently.time * 1000);
 
@@ -63,8 +63,8 @@ export async function getWeather(lat, long) {
   const nextWeekDay2 = nextDay2.toLocaleString('en-US', {weekday: 'long', timeZone: data.timezone});
   const nextWeekDay3 = nextDay3.toLocaleString('en-US', {weekday: 'long', timeZone: data.timezone});
 
-  tempSpan.innerHTML = tempC;
-  appTempSpan.innerHTML = appTempC;
+  tempSpan.innerHTML = tempC + '&#176;';
+  appTempSpan.innerHTML = appTempC + '&#176;';
   windSpan.innerHTML = windSpeed;
   humiditySpan.innerHTML = humidity;
   todayWeatherDate.innerHTML = currTime;
@@ -74,8 +74,6 @@ export async function getWeather(lat, long) {
   nextDay1TempSpan.innerHTML = nextDay1Temp + '&#176;';
   nextDay2TempSpan.innerHTML = nextDay2Temp + '&#176;';
   nextDay3TempSpan.innerHTML = nextDay3Temp + '&#176;';
-
-  console.log(todayWeatherIcon, nextDay1WeatherIcon, nextDay2WeatherIcon, nextDay3WeatherIcon);
   } catch(e) {
     console.error(e);
   }
