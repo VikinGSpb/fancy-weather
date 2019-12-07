@@ -1,7 +1,7 @@
-const cityInput = document.querySelector('#search');
-const microButton = document.querySelector('#micro');
-
 export function voiceSearch() {
+  const cityInput = document.querySelector('#search');
+  const microButton = document.querySelector('#micro');
+  
   window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
   recognition.lang = 'en-US';

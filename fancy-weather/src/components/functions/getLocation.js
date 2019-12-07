@@ -1,13 +1,13 @@
-const locationCoord1 = document.querySelector('.location__coord>span:first-child');
-const locationCoord2 = document.querySelector('.location__coord>span:last-child');
-const placeP = document.querySelector('.today-weather__place');
-
 function degToDegMin(deg) {
   return `${Math.floor(Number(deg))}&#176;${Math.floor(Math.round((Number(deg) - Math.floor(Number(deg))) * 3600) / 60)}'`;
 }
 
 /* f1 parameters - long, lat; other functions - lat, long */
 export async function getLocation(f1, ...args) {
+  const locationCoord1 = document.querySelector('.location__coord>span:first-child');
+  const locationCoord2 = document.querySelector('.location__coord>span:last-child');
+  const placeP = document.querySelector('.today-weather__place');
+  
   const url = 'https://ipinfo.io/geo?token=a4c83857cf016c';
   try {
   const response = await fetch(url);

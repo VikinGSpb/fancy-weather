@@ -1,26 +1,26 @@
-const tempSpan = document.querySelector('.today-weather__forecast>span');
-const summaryWeather = document.querySelectorAll('.today-weather__other>span');
-const appTempSpan = summaryWeather[0];
-const windSpan = summaryWeather[1];
-const humiditySpan = summaryWeather[2];
-const todayWeatherDate = document.querySelector('.today-weather__date');
-const nextDay1Span = document.querySelector('#nextDay1>span');
-const nextDay2Span = document.querySelector('#nextDay2>span');
-const nextDay3Span = document.querySelector('#nextDay3>span');
-const nextDay1TempSpan = document.querySelector('#nextDay1>div>span');
-const nextDay2TempSpan = document.querySelector('#nextDay2>div>span');
-const nextDay3TempSpan = document.querySelector('#nextDay3>div>span');
-const todayWeatherIconElement = document.querySelector('.today-weather__icon');
-const nextDay1WeatherIconElement = document.querySelector('#nextDay1>div>div');
-const nextDay2WeatherIconElement = document.querySelector('#nextDay2>div>div');
-const nextDay3WeatherIconElement = document.querySelector('#nextDay3>div>div');
-
 function fToC(temp) {
   return Math.round(5 / 9 * (temp - 32));
 }
 
 
 export async function getWeather(lat, long) {
+  const tempSpan = document.querySelector('.today-weather__forecast>span');
+  const summaryWeather = document.querySelectorAll('.today-weather__other>span');
+  const appTempSpan = summaryWeather[0];
+  const windSpan = summaryWeather[1];
+  const humiditySpan = summaryWeather[2];
+  const todayWeatherDate = document.querySelector('.today-weather__date');
+  const nextDay1Span = document.querySelector('#nextDay1>span');
+  const nextDay2Span = document.querySelector('#nextDay2>span');
+  const nextDay3Span = document.querySelector('#nextDay3>span');
+  const nextDay1TempSpan = document.querySelector('#nextDay1>div>span');
+  const nextDay2TempSpan = document.querySelector('#nextDay2>div>span');
+  const nextDay3TempSpan = document.querySelector('#nextDay3>div>span');
+  const todayWeatherIconElement = document.querySelector('.today-weather__icon');
+  const nextDay1WeatherIconElement = document.querySelector('#nextDay1>div>div');
+  const nextDay2WeatherIconElement = document.querySelector('#nextDay2>div>div');
+  const nextDay3WeatherIconElement = document.querySelector('#nextDay3>div>div');
+
   const url = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/a8aa053288d0f79e11f6a65e33c19366/'
     + `${lat},${long}`;
   try {
