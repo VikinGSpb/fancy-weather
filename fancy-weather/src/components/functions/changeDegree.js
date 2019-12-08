@@ -13,7 +13,7 @@ export function changeDegree() {
   const nextDay1TempSpan = document.querySelector('#nextDay1>div>span');
   const nextDay2TempSpan = document.querySelector('#nextDay2>div>span');
   const nextDay3TempSpan = document.querySelector('#nextDay3>div>span');
-  const appTempSpan = document.querySelectorAll('.today-weather__other>span')[0];
+  const appTempSpan = document.querySelectorAll('.today-weather__other>span')[1];
   const tempSpan = document.querySelector('.today-weather__forecast>span');
 
   fDeg.addEventListener('click', () => {

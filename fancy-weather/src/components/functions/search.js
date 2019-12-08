@@ -1,8 +1,8 @@
 const KEY = '170c2c7305f64259838058f18894a876';
 
 export async function getCoordinatesFromSearch(f1, ...args) {
-  const locationCoord1 = document.querySelector('.location__coord>span:first-child');
-  const locationCoord2 = document.querySelector('.location__coord>span:last-child');
+  const locationCoord1 = document.querySelector('#latSpan');
+  const locationCoord2 = document.querySelector('#lonSpan');
   const placeP = document.querySelector('.today-weather__place');
 
   const City = document.querySelector('#search').value;

@@ -31,10 +31,10 @@ export function initHTML() {
         <div class="today-weather__container2">
           <div class="today-weather__icon"></div>
           <div class="today-weather__other">
-            OVERCAST<br>
-            FEELS LIKE: <span>7&#176;</span><br>
-            WIND: <span>2.5</span>m/s<br>
-            HUMIDITY: <span>83</span>%
+            <p>OVERCAST</p>
+            <span class="not" id="feels">FEELS LIKE</span>: <span>7&#176;</span><br>
+            <span class="not" id="wind">WIND</span>: <span>2.5</span>m/s<br>
+            <span class="not" id="humidity">HUMIDITY</span>: <span>83</span>%
           </div>
         </div>
       </section>
@@ -57,8 +57,8 @@ export function initHTML() {
       <section class="location">
         <div class="location__map" id="map"></div>
         <div class="location__coord">
-          Latitude: <span>53&#176;54'</span><br>
-          Longitude: <span>27&#176;34'</span>
+          <span id="lat">Latitude</span>: <span id="latSpan">53&#176;54'</span><br>
+          <span id="lon">Longitude</span>: <span id="lonSpan">27&#176;34'</span>
         </div>
       </section>
   `;

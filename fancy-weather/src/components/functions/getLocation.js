@@ -4,8 +4,8 @@ function degToDegMin(deg) {
 
 /* f1 parameters - long, lat; other functions - lat, long */
 export async function getLocation(f1, ...args) {
-  const locationCoord1 = document.querySelector('.location__coord>span:first-child');
-  const locationCoord2 = document.querySelector('.location__coord>span:last-child');
+  const locationCoord1 = document.querySelector('#latSpan');
+  const locationCoord2 = document.querySelector('#lonSpan');
   const placeP = document.querySelector('.today-weather__place');
   
   const url = 'https://ipinfo.io/geo?token=a4c83857cf016c';

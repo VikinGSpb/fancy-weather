@@ -5,7 +5,8 @@ function fToC(temp) {
 
 export async function getWeather(lat, long) {
   const tempSpan = document.querySelector('.today-weather__forecast>span');
-  const summaryWeather = document.querySelectorAll('.today-weather__other>span');
+  const summaryWeather = document.querySelectorAll('.today-weather__other>span:not(.not)');
+  const summaryWeatherP = document.querySelector('.today-weather__other>p');
   const appTempSpan = summaryWeather[0];
   const windSpan = summaryWeather[1];
   const humiditySpan = summaryWeather[2];
@@ -26,6 +27,9 @@ export async function getWeather(lat, long) {
   try {
   const response = await fetch(url);
   const data = await response.json();
+
+  const WeatherP = data.currently.summary.toUpperCase();
+  summaryWeatherP.innerHTML = WeatherP;
 
   const tempF = Math.round(data.currently.temperature);
   const tempC = fToC(tempF);
