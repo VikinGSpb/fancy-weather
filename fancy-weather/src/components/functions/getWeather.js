@@ -2,6 +2,10 @@ function fToC(temp) {
   return Math.round(5 / 9 * (temp - 32));
 }
 
+function windToMS(windKH) {
+  return ((1000 * windKH) / 3600).toFixed(1);
+}
+
 
 export async function getWeather(lat, long) {
   const tempSpan = document.querySelector('.today-weather__forecast>span');
@@ -35,7 +39,7 @@ export async function getWeather(lat, long) {
   const tempC = fToC(tempF);
   const appTempF = Math.round(data.currently.apparentTemperature);
   const appTempC = fToC(appTempF);
-  const windSpeed = data.currently.windSpeed.toFixed(1);
+  const windSpeed = windToMS(data.currently.windSpeed.toFixed(1));
   const humidity = Math.round(data.currently.humidity * 100);
   const todayWeatherIcon = data.currently.icon;
   const nextDay1WeatherIcon = data.daily.data[0].icon;

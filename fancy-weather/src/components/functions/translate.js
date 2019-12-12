@@ -46,7 +46,9 @@ const lang = {
     ['DRIZZLE', 'МОРОСИТ', 'ІМЖЫЦЬ'],
     ['HUMID AND OVERCAST', 'ВЛАЖНО И ПАСМУРНО', 'ВІЛЬГОТНА І ПАХМУРНА'],
     ['DRIZZLE AND HUMID', 'ДОЖДЬ', 'ДОЖДЖ'],
-    ['HUMID', 'ВЛАЖНО', 'ВІЛЬГОТНА']
+    ['HUMID', 'ВЛАЖНО', 'ВІЛЬГОТНА'],
+    ['POSSIBLE DRIZZLE', 'ВОЗМОЖНЫ ОСАДКИ', 'МАГЧЫМЫЯ АПАДКІ'],
+    ['FOGGY', 'ТУМАН', 'ТУМАННЫ']
   ]
 };
 
@@ -85,13 +87,19 @@ function findIndex(selector, array) {
 }
 
 export async function translate(activeEl, targetEl) {
-  const City = document.querySelector('.today-weather__place');
-  const url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + KEY + '&lang=' 
-    + activeEl.innerHTML.toLowerCase() + '-' + targetEl.innerHTML.toLowerCase() + '&text=' + City.innerHTML;
-  const response = await fetch(url);
-  const resBody = await response.json();
-  const transCity = resBody.text;
-  City.innerHTML = transCity;
+  if(activeEl){
+    try{
+      const City = document.querySelector('.today-weather__place');
+      const url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + KEY + '&lang=' 
+      + activeEl.innerHTML.toLowerCase() + '-' + targetEl.innerHTML.toLowerCase() + '&text=' + City.innerHTML;
+      const response = await fetch(url);
+      const resBody = await response.json();
+      const transCity = resBody.text;
+      City.innerHTML = transCity;
+    } catch(e) {
+      console.error(e);
+    }
+  }
 
   const todayWeatherDate = document.querySelector('.today-weather__date');
 
@@ -105,6 +113,8 @@ export async function translate(activeEl, targetEl) {
   const nextDay2Span = document.querySelector('#nextDay2>span');
   const nextDay3Span = document.querySelector('#nextDay3>span');
   const nextDay1Idx = findIndex(nextDay1Span.innerHTML, lang.WeekDay);
+  const nextDay2Idx = findIndex(nextDay2Span.innerHTML, lang.WeekDay);
+  const nextDay3Idx = findIndex(nextDay3Span.innerHTML, lang.WeekDay);
 
   const summary = document.querySelector('.today-weather__other>p');
   const summaryIdx = findIndex(summary.innerHTML, lang.Weather);
@@ -112,44 +122,41 @@ export async function translate(activeEl, targetEl) {
   switch(targetEl.innerHTML) {
 
     case 'EN' :  
+      translateHelp(0);
       summary.innerHTML = lang.Weather[summaryIdx][0];
 
       todayWeatherDate.innerHTML = lang.shortWeekDay[todayIdx][0] + ' ' + lang.Month[monthIdx][0] 
         + todayWeatherDate.innerHTML.slice(todayWeatherDate.innerHTML.indexOf(' ', 4));
 
       nextDay1Span.innerHTML = lang.WeekDay[nextDay1Idx][0];
-      nextDay2Span.innerHTML = lang.WeekDay[nextDay1Idx + 1][0];
-      nextDay3Span.innerHTML = lang.WeekDay[nextDay1Idx + 2][0];
-
-      translateHelp(0);
+      nextDay2Span.innerHTML = lang.WeekDay[nextDay2Idx][0];
+      nextDay3Span.innerHTML = lang.WeekDay[nextDay3Idx][0];
 
       break;
 
     case 'RU' :
+      translateHelp(1);
       summary.innerHTML = lang.Weather[summaryIdx][1];
 
       todayWeatherDate.innerHTML = lang.shortWeekDay[todayIdx][1] + lang.Month[monthIdx][1] 
         + todayWeatherDate.innerHTML.slice(todayWeatherDate.innerHTML.indexOf(' ', 4));
 
       nextDay1Span.innerHTML = lang.WeekDay[nextDay1Idx][1];
-      nextDay2Span.innerHTML = lang.WeekDay[nextDay1Idx + 1][1];
-      nextDay3Span.innerHTML = lang.WeekDay[nextDay1Idx + 2][1];
-
-      translateHelp(1);
+      nextDay2Span.innerHTML = lang.WeekDay[nextDay2Idx][1];
+      nextDay3Span.innerHTML = lang.WeekDay[nextDay3Idx][1];
 
       break;
 
     case 'BE' :
+      translateHelp(2);
       summary.innerHTML = lang.Weather[summaryIdx][2];
 
       todayWeatherDate.innerHTML = lang.shortWeekDay[todayIdx][2] + lang.Month[monthIdx][2] 
         + todayWeatherDate.innerHTML.slice(todayWeatherDate.innerHTML.indexOf(' ', 4));
 
       nextDay1Span.innerHTML = lang.WeekDay[nextDay1Idx][2];
-      nextDay2Span.innerHTML = lang.WeekDay[nextDay1Idx + 1][2];
-      nextDay3Span.innerHTML = lang.WeekDay[nextDay1Idx + 2][2];
-
-      translateHelp(2);
+      nextDay2Span.innerHTML = lang.WeekDay[nextDay2Idx][2];
+      nextDay3Span.innerHTML = lang.WeekDay[nextDay3Idx][2];
 
       break;
   }

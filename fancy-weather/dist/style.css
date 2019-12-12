@@ -18,13 +18,13 @@ html, body {
   width: 1440px;
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-areas: "control control" "today location" "forecast location"; }
+  grid-template-areas: "control control" "today location" "forecast location"; }
   @media screen and (max-width: 1439px) {
     .wrapper {
       width: 100%; } }
   @media screen and (max-width: 1079px) {
     .wrapper {
-      grid-template-areas: "control control" "today ." "forecast forecast" "location location"; } }
+      grid-template-areas: "control control" "today ." "forecast forecast" "location location"; } }
   @media screen and (max-width: 555px) {
     .wrapper {
       width: 320px;

@@ -18,11 +18,20 @@ const langPanelDivs = document.querySelectorAll('.control__panel_lang>div');
 
 searchButton.addEventListener('click', () => {
   getCoordinatesFromSearch(createMap, getWeather, getLinkToImage);
+  langPanelDivs.forEach((x) => {
+    if(x.classList.contains('active')) {
+      translate(x, langPanelDivs[0]);
+      x.classList.remove('active');
+      x.classList.add('inactive');
+    }
+  });
+  langPanelDivs[0].classList.remove('inactive');
+  langPanelDivs[0].classList.add('active');
 });
 
-getLinkToImage();
-
 refresh.addEventListener('click', getLinkToImage);
+
+setTimeout(getLinkToImage, 1000);
 
 getLocation(createMap, getWeather);
 

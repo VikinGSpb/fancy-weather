@@ -33,7 +33,7 @@ export function initHTML() {
           <div class="today-weather__other">
             <p>OVERCAST</p>
             <span class="not" id="feels">FEELS LIKE</span>: <span>7&#176;</span><br>
-            <span class="not" id="wind">WIND</span>: <span>2.5</span>m/s<br>
+            <span class="not" id="wind">WIND</span>: <span>2.5</span><br>
             <span class="not" id="humidity">HUMIDITY</span>: <span>83</span>%
           </div>
         </div>
