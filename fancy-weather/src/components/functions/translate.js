@@ -1,30 +1,30 @@
 const lang = {
-  placeholder : ['Search city', 'Поиск города', 'Пошук горада'],
-  button : ['SEARCH', 'ПОИСК', 'ПОШУК'],
-  span1 : ['FEELS LIKE', 'ОЩУЩАЕТСЯ КАК', 'АДЧУВАЕЦЦА ЯК'],
-  span2 : ['WIND', 'ВЕТЕР', 'ВЕЦЕР'],
-  span3 : ['HUMIDITY', 'ВЛАЖНОСТЬ', 'ВІЛЬГОТНАСЦЬ'],
-  lat : ['Latitude', 'Широта', 'Шырата'],
-  lon : ['Longitude', 'Долгота', 'Даўгата'],
-  shortWeekDay : [
+  placeholder: ['Search city', 'Поиск города', 'Пошук горада'],
+  button: ['SEARCH', 'ПОИСК', 'ПОШУК'],
+  span1: ['FEELS LIKE', 'ОЩУЩАЕТСЯ КАК', 'АДЧУВАЕЦЦА ЯК'],
+  span2: ['WIND', 'ВЕТЕР', 'ВЕЦЕР'],
+  span3: ['HUMIDITY', 'ВЛАЖНОСТЬ', 'ВІЛЬГОТНАСЦЬ'],
+  lat: ['Latitude', 'Широта', 'Шырата'],
+  lon: ['Longitude', 'Долгота', 'Даўгата'],
+  shortWeekDay: [
     ['Sun', 'Вс ', 'Ня '],
     ['Mon', 'Пн ', 'Пн '],
     ['Tue', 'Вт ', 'Ат '],
     ['Wed', 'Ср ', 'Ac '],
     ['Thu', 'Чт ', 'Чц '],
     ['Fri', 'Пт ', 'Пт '],
-    ['Sat', 'Сб ', 'Сб ']
+    ['Sat', 'Сб ', 'Сб '],
   ],
-  WeekDay : [
+  WeekDay: [
     ['Sunday', 'Воскресенье', 'Нядзеля'],
     ['Monday', 'Понедельник', 'Панядзелак'],
     ['Tuesday', 'Вторник', 'Аўторак'],
     ['Wednesday', 'Среда', 'Асяроддзе'],
     ['Thursday', 'Четверг', 'Чацвер'],
     ['Friday', 'Пятница', 'Пятніца'],
-    ['Saturday', 'Суббота', 'Субота']
+    ['Saturday', 'Суббота', 'Субота'],
   ],
-  Month : [
+  Month: [
     ['January', 'Январь', 'Студзень'],
     ['February', 'Февраль', 'Люты'],
     ['March', 'Март', 'Сакавік'],
@@ -36,9 +36,9 @@ const lang = {
     ['September', 'Сентябрь', 'Верасень'],
     ['October', 'Октябрь', 'Кастрычнік'],
     ['November', 'Ноябрь', 'Лістапад'],
-    ['December', 'Декабрь', 'Снежань']
+    ['December', 'Декабрь', 'Снежань'],
   ],
-  Weather : [
+  Weather: [
     ['OVERCAST', 'ПАСМУРНО', 'ПАХМУРНА'],
     ['CLEAR', 'ЯСНО', 'ЯСНЫ'],
     ['MOSTLY CLOUDY', 'ОБЛАЧНО', 'ВОБЛАЧНА'],
@@ -48,8 +48,8 @@ const lang = {
     ['DRIZZLE AND HUMID', 'ДОЖДЬ', 'ДОЖДЖ'],
     ['HUMID', 'ВЛАЖНО', 'ВІЛЬГОТНА'],
     ['POSSIBLE DRIZZLE', 'ВОЗМОЖНЫ ОСАДКИ', 'МАГЧЫМЫЯ АПАДКІ'],
-    ['FOGGY', 'ТУМАН', 'ТУМАННЫ']
-  ]
+    ['FOGGY', 'ТУМАН', 'ТУМАННЫ'],
+  ],
 };
 
 const KEY = 'trnsl.1.1.20191208T135558Z.23776bb57e1a83e8.f1035efb9cfa295724309bd52261ba90c876a58d';
@@ -78,25 +78,25 @@ function translateHelp(idx) {
 
 function findIndex(selector, array) {
   let Idx;
-  for(let i = 0; i < array.length; i++) {
-    for(let j = 0; j < 3; j++) {
-      if(selector === array[i][j]) Idx = i;
+  for (let i = 0; i < array.length; i += 1) {
+    for (let j = 0; j < 3; j += 1) {
+      if (selector === array[i][j]) Idx = i;
     }
   }
   return Idx;
 }
 
 export async function translate(activeEl, targetEl) {
-  if(activeEl){
-    try{
+  if (activeEl) {
+    try {
       const City = document.querySelector('.today-weather__place');
-      const url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + KEY + '&lang=' 
-      + activeEl.innerHTML.toLowerCase() + '-' + targetEl.innerHTML.toLowerCase() + '&text=' + City.innerHTML;
+      const url = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${KEY}&lang=${
+        activeEl.innerHTML.toLowerCase()}-${targetEl.innerHTML.toLowerCase()}&text=${City.innerHTML}`;
       const response = await fetch(url);
       const resBody = await response.json();
       const transCity = resBody.text;
       City.innerHTML = transCity;
-    } catch(e) {
+    } catch (e) {
       console.error(e);
     }
   }
@@ -119,14 +119,13 @@ export async function translate(activeEl, targetEl) {
   const summary = document.querySelector('.today-weather__other>p');
   const summaryIdx = findIndex(summary.innerHTML, lang.Weather);
 
-  switch(targetEl.innerHTML) {
-
-    case 'EN' :  
+  switch (targetEl.innerHTML) {
+    case 'EN':
       translateHelp(0);
       summary.innerHTML = lang.Weather[summaryIdx][0];
 
-      todayWeatherDate.innerHTML = lang.shortWeekDay[todayIdx][0] + ' ' + lang.Month[monthIdx][0] 
-        + todayWeatherDate.innerHTML.slice(todayWeatherDate.innerHTML.indexOf(' ', 4));
+      todayWeatherDate.innerHTML = `${lang.shortWeekDay[todayIdx][0]} ${lang.Month[monthIdx][0]
+      }${todayWeatherDate.innerHTML.slice(todayWeatherDate.innerHTML.indexOf(' ', 4))}`;
 
       nextDay1Span.innerHTML = lang.WeekDay[nextDay1Idx][0];
       nextDay2Span.innerHTML = lang.WeekDay[nextDay2Idx][0];
@@ -134,11 +133,11 @@ export async function translate(activeEl, targetEl) {
 
       break;
 
-    case 'RU' :
+    case 'RU':
       translateHelp(1);
       summary.innerHTML = lang.Weather[summaryIdx][1];
 
-      todayWeatherDate.innerHTML = lang.shortWeekDay[todayIdx][1] + lang.Month[monthIdx][1] 
+      todayWeatherDate.innerHTML = lang.shortWeekDay[todayIdx][1] + lang.Month[monthIdx][1]
         + todayWeatherDate.innerHTML.slice(todayWeatherDate.innerHTML.indexOf(' ', 4));
 
       nextDay1Span.innerHTML = lang.WeekDay[nextDay1Idx][1];
@@ -147,11 +146,11 @@ export async function translate(activeEl, targetEl) {
 
       break;
 
-    case 'BE' :
+    case 'BE':
       translateHelp(2);
       summary.innerHTML = lang.Weather[summaryIdx][2];
 
-      todayWeatherDate.innerHTML = lang.shortWeekDay[todayIdx][2] + lang.Month[monthIdx][2] 
+      todayWeatherDate.innerHTML = lang.shortWeekDay[todayIdx][2] + lang.Month[monthIdx][2]
         + todayWeatherDate.innerHTML.slice(todayWeatherDate.innerHTML.indexOf(' ', 4));
 
       nextDay1Span.innerHTML = lang.WeekDay[nextDay1Idx][2];
@@ -159,5 +158,9 @@ export async function translate(activeEl, targetEl) {
       nextDay3Span.innerHTML = lang.WeekDay[nextDay3Idx][2];
 
       break;
+
+    case 'default': break;
   }
+
+  localStorage.setItem('lang', targetEl.innerHTML);
 }

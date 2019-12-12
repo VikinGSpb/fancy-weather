@@ -15,11 +15,14 @@ const refresh = document.querySelector('#refresh');
 const searchButton = document.querySelector('#searchButton');
 const langPanel = document.querySelector('.control__panel_lang');
 const langPanelDivs = document.querySelectorAll('.control__panel_lang>div');
+const micro = document.querySelector('#micro');
+
+if (!navigator.userAgent.includes('Chrome')) micro.style.background = 'rgba(76, 82, 85, 0.4)';
 
 searchButton.addEventListener('click', () => {
   getCoordinatesFromSearch(createMap, getWeather, getLinkToImage);
   langPanelDivs.forEach((x) => {
-    if(x.classList.contains('active')) {
+    if (x.classList.contains('active')) {
       translate(x, langPanelDivs[0]);
       x.classList.remove('active');
       x.classList.add('inactive');
@@ -40,10 +43,10 @@ voiceSearch();
 changeDegree();
 
 langPanel.addEventListener('click', (e) => {
-  const target = e.target;
+  const { target } = e;
   let active;
   langPanelDivs.forEach((x) => {
-    if(x.classList.contains('active')) {
+    if (x.classList.contains('active')) {
       active = x;
       x.classList.remove('active');
       x.classList.add('inactive');

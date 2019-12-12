@@ -1,5 +1,5 @@
 function fToC(temp) {
-  return Math.round(5 / 9 * (temp - 32));
+  return Math.round((5 / 9) * (temp - 32));
 }
 
 function windToMS(windKH) {
@@ -29,60 +29,65 @@ export async function getWeather(lat, long) {
   const url = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/a8aa053288d0f79e11f6a65e33c19366/'
     + `${lat},${long}`;
   try {
-  const response = await fetch(url);
-  const data = await response.json();
+    const response = await fetch(url);
+    const data = await response.json();
 
-  const WeatherP = data.currently.summary.toUpperCase();
-  summaryWeatherP.innerHTML = WeatherP;
+    const WeatherP = data.currently.summary.toUpperCase();
+    summaryWeatherP.innerHTML = WeatherP;
 
-  const tempF = Math.round(data.currently.temperature);
-  const tempC = fToC(tempF);
-  const appTempF = Math.round(data.currently.apparentTemperature);
-  const appTempC = fToC(appTempF);
-  const windSpeed = windToMS(data.currently.windSpeed.toFixed(1));
-  const humidity = Math.round(data.currently.humidity * 100);
-  const todayWeatherIcon = data.currently.icon;
-  const nextDay1WeatherIcon = data.daily.data[0].icon;
-  const nextDay2WeatherIcon = data.daily.data[1].icon;
-  const nextDay3WeatherIcon = data.daily.data[2].icon;
+    const tempF = Math.round(data.currently.temperature);
+    const tempC = fToC(tempF);
+    const appTempF = Math.round(data.currently.apparentTemperature);
+    const appTempC = fToC(appTempF);
+    const windSpeed = windToMS(data.currently.windSpeed.toFixed(1));
+    const humidity = Math.round(data.currently.humidity * 100);
+    const todayWeatherIcon = data.currently.icon;
+    const nextDay1WeatherIcon = data.daily.data[0].icon;
+    const nextDay2WeatherIcon = data.daily.data[1].icon;
+    const nextDay3WeatherIcon = data.daily.data[2].icon;
 
-  todayWeatherIconElement.style.background = `url(./assets/img/${todayWeatherIcon}.svg) no-repeat rgba(255, 255, 0, 0.1) 50% 50%`;
-  todayWeatherIconElement.style.backgroundSize = '100%';
-  nextDay1WeatherIconElement.style.background = `url(./assets/img/${nextDay1WeatherIcon}.svg) no-repeat rgba(255, 255, 0, 0.1) 50% 50%`;
-  nextDay1WeatherIconElement.style.backgroundSize = '100%';
-  nextDay2WeatherIconElement.style.background = `url(./assets/img/${nextDay2WeatherIcon}.svg) no-repeat rgba(255, 255, 0, 0.1) 50% 50%`;
-  nextDay2WeatherIconElement.style.backgroundSize = '100%';
-  nextDay3WeatherIconElement.style.background = `url(./assets/img/${nextDay3WeatherIcon}.svg) no-repeat rgba(255, 255, 0, 0.1) 50% 50%`;
-  nextDay3WeatherIconElement.style.backgroundSize = '100%';
+    todayWeatherIconElement.style.background = `url(./assets/img/${todayWeatherIcon}.svg) no-repeat rgba(255, 255, 0, 0.1) 50% 50%`;
+    todayWeatherIconElement.style.backgroundSize = '100%';
+    nextDay1WeatherIconElement.style.background = `url(./assets/img/${nextDay1WeatherIcon}.svg) no-repeat rgba(255, 255, 0, 0.1) 50% 50%`;
+    nextDay1WeatherIconElement.style.backgroundSize = '100%';
+    nextDay2WeatherIconElement.style.background = `url(./assets/img/${nextDay2WeatherIcon}.svg) no-repeat rgba(255, 255, 0, 0.1) 50% 50%`;
+    nextDay2WeatherIconElement.style.backgroundSize = '100%';
+    nextDay3WeatherIconElement.style.background = `url(./assets/img/${nextDay3WeatherIcon}.svg) no-repeat rgba(255, 255, 0, 0.1) 50% 50%`;
+    nextDay3WeatherIconElement.style.backgroundSize = '100%';
 
-  const nextDay1Temp = fToC((data.daily.data[0].temperatureHigh + data.daily.data[0].temperatureLow) / 2);
-  const nextDay2Temp = fToC((data.daily.data[1].temperatureHigh + data.daily.data[1].temperatureLow) / 2);
-  const nextDay3Temp = fToC((data.daily.data[2].temperatureHigh + data.daily.data[2].temperatureLow) / 2);
+    const nextDay1Temp = fToC((data.daily.data[0].temperatureHigh
+      + data.daily.data[0].temperatureLow) / 2);
+    const nextDay2Temp = fToC((data.daily.data[1].temperatureHigh
+      + data.daily.data[1].temperatureLow) / 2);
+    const nextDay3Temp = fToC((data.daily.data[2].temperatureHigh
+      + data.daily.data[2].temperatureLow) / 2);
 
-  const today = new Date(data.currently.time * 1000);
+    const today = new Date(data.currently.time * 1000);
 
-  const nextDay1 = new Date((data.currently.time + 86400) * 1000);
-  const nextDay2 = new Date((data.currently.time + 172800) * 1000);
-  const nextDay3 = new Date((data.currently.time + 259200) * 1000);
-  const currTimeStr = today.toLocaleString('en-US', 
-    {weekday: 'short', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: false, timeZone: data.timezone});
-  const currTime = currTimeStr.replace(/\,/g, '');
-  const nextWeekDay1 = nextDay1.toLocaleString('en-US', {weekday: 'long', timeZone: data.timezone});
-  const nextWeekDay2 = nextDay2.toLocaleString('en-US', {weekday: 'long', timeZone: data.timezone});
-  const nextWeekDay3 = nextDay3.toLocaleString('en-US', {weekday: 'long', timeZone: data.timezone});
+    const nextDay1 = new Date((data.currently.time + 86400) * 1000);
+    const nextDay2 = new Date((data.currently.time + 172800) * 1000);
+    const nextDay3 = new Date((data.currently.time + 259200) * 1000);
+    const currTimeStr = today.toLocaleString('en-US',
+      {
+        weekday: 'short', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: false, timeZone: data.timezone,
+      });
+    const currTime = currTimeStr.replace(/\,/g, '');
+    const nextWeekDay1 = nextDay1.toLocaleString('en-US', { weekday: 'long', timeZone: data.timezone });
+    const nextWeekDay2 = nextDay2.toLocaleString('en-US', { weekday: 'long', timeZone: data.timezone });
+    const nextWeekDay3 = nextDay3.toLocaleString('en-US', { weekday: 'long', timeZone: data.timezone });
 
-  tempSpan.innerHTML = tempC + '&#176;';
-  appTempSpan.innerHTML = appTempC + '&#176;';
-  windSpan.innerHTML = windSpeed;
-  humiditySpan.innerHTML = humidity;
-  todayWeatherDate.innerHTML = currTime;
-  nextDay1Span.innerHTML = nextWeekDay1;
-  nextDay2Span.innerHTML = nextWeekDay2;
-  nextDay3Span.innerHTML = nextWeekDay3;
-  nextDay1TempSpan.innerHTML = nextDay1Temp + '&#176;';
-  nextDay2TempSpan.innerHTML = nextDay2Temp + '&#176;';
-  nextDay3TempSpan.innerHTML = nextDay3Temp + '&#176;';
-  } catch(e) {
+    tempSpan.innerHTML = `${tempC}&#176;`;
+    appTempSpan.innerHTML = `${appTempC}&#176;`;
+    windSpan.innerHTML = windSpeed;
+    humiditySpan.innerHTML = humidity;
+    todayWeatherDate.innerHTML = currTime;
+    nextDay1Span.innerHTML = nextWeekDay1;
+    nextDay2Span.innerHTML = nextWeekDay2;
+    nextDay3Span.innerHTML = nextWeekDay3;
+    nextDay1TempSpan.innerHTML = `${nextDay1Temp}&#176;`;
+    nextDay2TempSpan.innerHTML = `${nextDay2Temp}&#176;`;
+    nextDay3TempSpan.innerHTML = `${nextDay3Temp}&#176;`;
+  } catch (e) {
     console.error(e);
   }
 }

@@ -1,6 +1,6 @@
 export function initHTML() {
   const wrapper = document.createElement('div');
-  wrapper.setAttribute('class','wrapper');
+  wrapper.setAttribute('class', 'wrapper');
   wrapper.innerHTML = `
       <section class="control">
         <div class="control__panel">

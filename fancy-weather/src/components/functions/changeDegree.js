@@ -1,9 +1,9 @@
 function fToC(temp) {
-  return Math.round(5 / 9 * (temp - 32));
+  return Math.round((5 / 9) * (temp - 32));
 }
 
 function cToF(temp) {
-  return Math.round(9 / 5 * temp + 32);
+  return Math.round((9 / 5) * temp + 32);
 }
 
 export function changeDegree() {
@@ -17,26 +17,28 @@ export function changeDegree() {
   const tempSpan = document.querySelector('.today-weather__forecast>span');
 
   fDeg.addEventListener('click', () => {
-    if(fDeg.className === 'inactive') {
+    if (fDeg.className === 'inactive') {
       cDeg.className = 'inactive';
       fDeg.className = 'active';
-      nextDay1TempSpan.innerHTML = cToF(parseInt(nextDay1TempSpan.innerHTML)) + 'F';
-      nextDay2TempSpan.innerHTML = cToF(parseInt(nextDay2TempSpan.innerHTML)) + 'F';
-      nextDay3TempSpan.innerHTML = cToF(parseInt(nextDay3TempSpan.innerHTML)) + 'F';
-      appTempSpan.innerHTML = cToF(parseInt(appTempSpan.innerHTML)) + 'F';
-      tempSpan.innerHTML = cToF(parseInt(tempSpan.innerHTML)) + 'F';
+      nextDay1TempSpan.innerHTML = `${cToF(parseInt(nextDay1TempSpan.innerHTML))}F`;
+      nextDay2TempSpan.innerHTML = `${cToF(parseInt(nextDay2TempSpan.innerHTML))}F`;
+      nextDay3TempSpan.innerHTML = `${cToF(parseInt(nextDay3TempSpan.innerHTML))}F`;
+      appTempSpan.innerHTML = `${cToF(parseInt(appTempSpan.innerHTML))}F`;
+      tempSpan.innerHTML = `${cToF(parseInt(tempSpan.innerHTML))}F`;
+      localStorage.setItem('deg', 'F');
     }
   });
 
   cDeg.addEventListener('click', () => {
-    if(cDeg.className === 'inactive') {
+    if (cDeg.className === 'inactive') {
       fDeg.className = 'inactive';
       cDeg.className = 'active';
-      nextDay1TempSpan.innerHTML = fToC(parseInt(nextDay1TempSpan.innerHTML)) + '&#176;';
-      nextDay2TempSpan.innerHTML = fToC(parseInt(nextDay2TempSpan.innerHTML)) + '&#176;';
-      nextDay3TempSpan.innerHTML = fToC(parseInt(nextDay3TempSpan.innerHTML)) + '&#176;';
-      appTempSpan.innerHTML = fToC(parseInt(appTempSpan.innerHTML)) + '&#176;';
-      tempSpan.innerHTML = fToC(parseInt(tempSpan.innerHTML)) + '&#176;';
+      nextDay1TempSpan.innerHTML = `${fToC(parseInt(nextDay1TempSpan.innerHTML))}&#176;`;
+      nextDay2TempSpan.innerHTML = `${fToC(parseInt(nextDay2TempSpan.innerHTML))}&#176;`;
+      nextDay3TempSpan.innerHTML = `${fToC(parseInt(nextDay3TempSpan.innerHTML))}&#176;`;
+      appTempSpan.innerHTML = `${fToC(parseInt(appTempSpan.innerHTML))}&#176;`;
+      tempSpan.innerHTML = `${fToC(parseInt(tempSpan.innerHTML))}&#176;`;
+      localStorage.setItem('deg', 'C');
     }
   });
 }
