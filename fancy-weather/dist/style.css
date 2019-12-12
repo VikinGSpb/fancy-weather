@@ -18,14 +18,14 @@ html, body {
   width: 1440px;
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-areas: "control control" "today location" "forecast location"; }
+  grid-template-areas: "control control" "today location" "forecast location"; }
   @media screen and (max-width: 1439px) {
     .wrapper {
       width: 100%; } }
   @media screen and (max-width: 1079px) {
     .wrapper {
-      grid-template-areas: "control control" "today ." "forecast forecast" "location location"; } }
-  @media screen and (max-width: 555px) {
+      grid-template-areas: "control control" "today ." "forecast forecast" "location location"; } }
+  @media screen and (max-width: 595px) {
     .wrapper {
       width: 320px;
       margin: 0 auto; } }
@@ -109,7 +109,7 @@ html, body {
         margin-right: 20px; }
       .control__search {
         margin-top: 30px; } }
-  @media screen and (max-width: 555px) {
+  @media screen and (max-width: 595px) {
     .control__search_input {
       width: 180px; }
     .control__search_button {
@@ -129,7 +129,7 @@ html, body {
     font-size: 1.5rem;
     line-height: 1.813rem; }
   .today-weather__forecast {
-    font-size: 19.13rem;
+    font-size: 16rem;
     line-height: 23.31rem; }
   .today-weather__icon {
     width: 163px;
@@ -141,12 +141,12 @@ html, body {
     font-weight: bold;
     font-size: 1.375rem;
     line-height: 2.313rem; }
-  @media screen and (max-width: 555px) {
+  @media screen and (max-width: 595px) {
     .today-weather {
       flex-wrap: wrap; }
       .today-weather__forecast {
-        font-size: 14rem;
-        line-height: 18rem; }
+        font-size: 10rem;
+        line-height: 14rem; }
       .today-weather__icon {
         margin-top: 0; }
       .today-weather__other {
@@ -177,7 +177,7 @@ html, body {
     width: 66px;
     height: 42px;
     background: rgba(76, 82, 85, 0.4); }
-  @media screen and (max-width: 555px) {
+  @media screen and (max-width: 595px) {
     .weather-forecast {
       display: block; }
       .weather-forecast__day {
@@ -201,7 +201,7 @@ html, body {
     font-size: 1.25rem;
     line-height: 1.875rem;
     color: white; }
-  @media screen and (max-width: 555px) {
+  @media screen and (max-width: 595px) {
     .location__map {
       width: 288px;
       height: 207px;

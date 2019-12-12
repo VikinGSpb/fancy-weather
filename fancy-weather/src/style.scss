@@ -38,7 +38,7 @@ html,body {
   @media screen and (max-width: 724px) {
   }
 
-  @media screen and (max-width: 555px) {
+  @media screen and (max-width: 595px) {
     width: 320px;
     margin: 0 auto;
   }
@@ -164,7 +164,7 @@ html,body {
     }
   }
 
-  @media screen and (max-width: 555px) {
+  @media screen and (max-width: 595px) {
     &__search_input {
       width: 180px;
     }
@@ -195,7 +195,7 @@ html,body {
   }
 
   &__forecast {
-    font-size: 19.13rem;
+    font-size: 16rem;
     line-height: 23.31rem;
   }
 
@@ -215,12 +215,12 @@ html,body {
     line-height: 2.313rem;
   }
 
-  @media screen and (max-width: 555px) {
+  @media screen and (max-width: 595px) {
     flex-wrap: wrap;
 
     &__forecast {
-      font-size: 14rem;
-      line-height: 18rem;
+      font-size: 10rem;
+      line-height: 14rem;
     }
 
     &__icon {
@@ -271,7 +271,7 @@ html,body {
     background: rgba(76, 82, 85, 0.4);
   }
 
-  @media screen and (max-width: 555px) {
+  @media screen and (max-width: 595px) {
     display: block;
 
     &__day {
@@ -305,7 +305,7 @@ html,body {
     color: white;
   }
 
-  @media screen and (max-width: 555px) {
+  @media screen and (max-width: 595px) {
     &__map {
       width: 288px;
       height: 207px;
