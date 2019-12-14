@@ -19,7 +19,7 @@ const micro = document.querySelector('#micro');
 
 if (!navigator.userAgent.includes('Chrome')) micro.style.background = 'rgba(76, 82, 85, 0.4)';
 
-searchButton.addEventListener('click', () => {
+function helpSearch() {
   getCoordinatesFromSearch(createMap, getWeather, getLinkToImage);
   langPanelDivs.forEach((x) => {
     if (x.classList.contains('active')) {
@@ -30,7 +30,14 @@ searchButton.addEventListener('click', () => {
   });
   langPanelDivs[0].classList.remove('inactive');
   langPanelDivs[0].classList.add('active');
+}
+
+searchButton.addEventListener('click', helpSearch);
+
+document.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') helpSearch();
 });
+
 
 refresh.addEventListener('click', getLinkToImage);
 
